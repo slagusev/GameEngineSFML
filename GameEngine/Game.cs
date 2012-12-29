@@ -9,22 +9,37 @@ namespace GameEngine
 {
   public class Game
   {
-    public static RenderWindow Context;
     static GameWorld World;
+    public static RenderWindow Context;
+    public static EventManager EventMgr;
+    public static Random Rand;
 
     const string WindowTitle = "Game Engine";
     const int FPS = 60;
-    const int Width = 1024;
-    const int Height = 640;
+    public const int Width = 1024;
+    public const int Height = 640;
     static DateTime LastTime = DateTime.Now;
     public static long GameTime;
-    public static double Delta = 0.0d;
+    public static float Delta = 0f;
 
     public static void Init()
     {
       Context = new RenderWindow(new VideoMode(Width, Height), WindowTitle);
       Context.Closed += OnClose;
+      Context.KeyPressed += KeyPressed;
+      Context.KeyReleased += KeyReleased;
+      Context.MouseMoved += MouseMoved;
+      Context.MouseButtonPressed += MouseButtonPressed;
+      Context.MouseButtonReleased += MouseButtonReleased;
+      Context.MouseWheelMoved += MouseWheelMoved;
+      Context.JoystickButtonPressed += JoystickButtonPressed;
+      Context.JoystickButtonReleased += JoystickButtonReleased;
+      Context.JoystickConnected += JoystickConnected;
+      Context.JoystickDisconnected += JoystickDisconnected;
+      Context.JoystickMoved += JoystickMoved;
 
+      Rand = new Random();
+      EventMgr = new EventManager();
       World = new GameWorld();
     }
 
@@ -41,7 +56,7 @@ namespace GameEngine
         Thread.Sleep(1000 / FPS);
 
         TimeSpan timeDiff = DateTime.UtcNow - LastTime;
-        Delta = timeDiff.TotalSeconds;
+        Delta = (float)timeDiff.TotalSeconds;
 
         // Update
         Context.DispatchEvents();
@@ -53,6 +68,65 @@ namespace GameEngine
         Context.Display();
       }
     }
+
+    #region Input Events
+
+    static void KeyPressed(object sender, KeyEventArgs e)
+    {
+      EventMgr.Notify(Event.KeyPressed, e);
+    }
+
+    static void KeyReleased(object sender, KeyEventArgs e)
+    {
+      EventMgr.Notify(Event.KeyReleased, e);
+    }
+
+    static void MouseMoved(object sender, MouseMoveEventArgs e)
+    {
+      EventMgr.Notify(Event.MouseMoved, e);
+    }
+
+    static void MouseButtonPressed(object sender, MouseButtonEventArgs e)
+    {
+      EventMgr.Notify(Event.MouseButtonPressed, e);
+    }
+
+    static void MouseButtonReleased(object sender, MouseButtonEventArgs e)
+    {
+      EventMgr.Notify(Event.MouseButtonReleased, e);
+    }
+
+    static void MouseWheelMoved(object sender, MouseWheelEventArgs e)
+    {
+      EventMgr.Notify(Event.MouseWheelMoved, e);
+    }
+
+    static void JoystickButtonPressed(object sender, JoystickButtonEventArgs e)
+    {
+      EventMgr.Notify(Event.JoystickButtonPressed, e);
+    }
+
+    static void JoystickButtonReleased(object sender, JoystickButtonEventArgs e)
+    {
+      EventMgr.Notify(Event.JoystickButtonReleased, e);
+    }
+
+    static void JoystickConnected(object sender, JoystickConnectEventArgs e)
+    {
+      EventMgr.Notify(Event.JoystickConnected, e);
+    }
+
+    static void JoystickDisconnected(object sender, JoystickConnectEventArgs e)
+    {
+      EventMgr.Notify(Event.JoystickDisconnected, e);
+    }
+
+    static void JoystickMoved(object sender, JoystickMoveEventArgs e)
+    {
+      EventMgr.Notify(Event.JoystickMoved, e);
+    }
+
+    #endregion
 
     static void OnClose(object sender, EventArgs e)
     {

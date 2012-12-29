@@ -55,10 +55,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ball.cs" />
+    <Compile Include="Base\AController.cs" />
+    <Compile Include="Base\AInput.cs" />
+    <Compile Include="Base\AView.cs" />
+    <Compile Include="Base\AWorld.cs" />
+    <Compile Include="Title\Controller.cs" />
+    <Compile Include="Title\Input.cs" />
+    <Compile Include="Title\View.cs" />
+    <Compile Include="Title\World.cs" />
+    <Compile Include="Splash\Controller.cs" />
+    <Compile Include="Splash\Input.cs" />
+    <Compile Include="Splash\View.cs" />
+    <Compile Include="Splash\World.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\IController.cs" />
+    <Compile Include="Base\IInput.cs" />
+    <Compile Include="Base\IView.cs" />
+    <Compile Include="Base\IWorld.cs" />
+    <Compile Include="Template\Controller.cs" />
+    <Compile Include="Template\Input.cs" />
+    <Compile Include="Template\View.cs" />
+    <Compile Include="Template\World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,41 +1,68 @@
 ﻿using System;
+using System.Collections.Generic;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
 
 namespace GameEngine
 {
+  enum Screen { Null, Splash, Title, Level0, EndCredits }
+
   class GameWorld
   {
+    static AWorld World;
+    private static Screen NewWorld;
+
+    public GameWorld()
+    {
+      // Default World to load
+      World = new Splash.World();
+    }
+
     public void Update()
     {
-      Game.Context.SetTitle(Game.Delta.ToString());
+      LoadNewWorld();
+
+      if (World != null)
+        World.Update();
+    }
+
+    private static void LoadNewWorld()
+    {
+      if (NewWorld != Screen.Null)
+      {
+        if (World != null)
+          World.DeregisterEvents();
+
+        switch (NewWorld)
+        {
+          case Screen.Splash:
+            World = new Splash.World();
+            break;
+          case Screen.Title:
+            World = new Title.World();
+            break;
+          case Screen.Level0:
+            // World = new Level0.World();
+            break;
+          case Screen.EndCredits:
+            // World = new EndCredits.World();
+            break;
+        }
+
+        NewWorld = Screen.Null;
+      }
     }
 
     public void Draw(RenderWindow context)
     {
-      CircleShape ball = new CircleShape();
-      ball.Radius = 50;
-      ball.FillColor = new Color(Color.Magenta);
-      ball.Position = new Vector2f(100, 150);
-      context.Draw(ball);
-
-      // Create a graphical string to display
-      Text text = new Text("Hello World!");
-      context.Draw(text);
+      if (World != null)
+        World.Draw(context);
     }
 
-    public class Ball
+    public static void LoadScreen(Screen screen)
     {
-      int X;
-      int Y;
-
-      public Ball(int x, int y)
-      {
-      }
-
-      public void Update() { }
-      public void Draw() { }
+      NewWorld = screen;
     }
   }
 }

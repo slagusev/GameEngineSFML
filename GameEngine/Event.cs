@@ -1,0 +1,36 @@
+﻿namespace GameEngine
+{
+  public enum Event
+  {
+    KeyPressed,
+    KeyReleased,
+    MouseMoved,
+    MouseButtonPressed,
+    MouseButtonReleased,
+    MouseWheelMoved,
+    LeftDown,
+    RightDown,
+    MiddleDown,
+    LeftClick,
+    RightClick,
+    MiddleMiddle,
+    ScrollDown,
+    ScrollUp,
+    KeyClick,
+    KeyDown,
+    KeyUp,
+    JoystickButtonPressed,
+    JoystickButtonReleased,
+    JoystickConnected,
+    JoystickDisconnected,
+    JoystickMoved,
+    JoystickBtnDown,
+    JoystickBtnUp,
+    JoystickBtnClick,
+    JoystickMoveLeft,
+    JoystickMoveRight,
+    JoystickMoveUp,
+    JoystickMoveDown,
+    NextWorld
+  }
+}
