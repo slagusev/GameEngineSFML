@@ -7,12 +7,12 @@ namespace GameEngine
 {
   class GameWorld
   {
-    public void Update(DateTime now, double delta)
+    public void Update()
     {
-      Game.Context.SetTitle(delta.ToString());
+      Game.Context.SetTitle(Game.Delta.ToString());
     }
 
-    public void Draw(RenderWindow context, DateTime now, double delta)
+    public void Draw(RenderWindow context)
     {
       CircleShape ball = new CircleShape();
       ball.Radius = 50;

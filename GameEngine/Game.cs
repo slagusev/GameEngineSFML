@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Timers;
+using System.Threading;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.Audio;
@@ -15,6 +17,8 @@ namespace GameEngine
     const int Width = 1024;
     const int Height = 640;
     static DateTime LastTime = DateTime.Now;
+    public static long GameTime;
+    public static double Delta = 0.0d;
 
     public static void Init()
     {
@@ -30,23 +34,22 @@ namespace GameEngine
 
       while (Context.IsOpen())
       {
+        GameTime++;
+
         LastTime = DateTime.UtcNow;
 
-        // Pause
-        DateTime timeTo = DateTime.UtcNow.AddSeconds(1.0f / FPS);
-        while (DateTime.UtcNow < timeTo) { }
+        Thread.Sleep(1000 / FPS);
 
-        // GameTime and Time Delta
         TimeSpan timeDiff = DateTime.UtcNow - LastTime;
-        double delta = timeDiff.TotalSeconds;
+        Delta = timeDiff.TotalSeconds;
 
         // Update
         Context.DispatchEvents();
-        Update(delta);
+        Update();
 
         // Draw
         Context.Clear();
-        Draw(delta);
+        Draw();
         Context.Display();
       }
     }
@@ -57,16 +60,16 @@ namespace GameEngine
       window.Close();
     }
 
-    public static void Update(double delta)
+    public static void Update()
     {
       if (World != null)
-        World.Update(DateTime.UtcNow, delta);
+        World.Update();
     }
 
-    public static void Draw(double delta)
+    public static void Draw()
     {
       if (World != null)
-        World.Draw(Context, DateTime.UtcNow, delta);
+        World.Draw(Context);
     }
   }
 }
