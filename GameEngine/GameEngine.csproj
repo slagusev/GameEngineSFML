@@ -74,7 +74,6 @@
     <Compile Include="Events.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IController.cs" />
     <Compile Include="Base\IInput.cs" />
@@ -95,6 +94,7 @@
     </Content>
     <Content Include="XML\Sound.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="XML\Images.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

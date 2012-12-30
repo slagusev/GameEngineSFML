@@ -69,6 +69,29 @@ namespace GameEngine
       }
     }
 
+    static void Main(string[] args)
+    {
+      Game.Run();
+    }
+
+    static void OnClose(object sender, EventArgs e)
+    {
+      RenderWindow window = (RenderWindow)sender;
+      window.Close();
+    }
+
+    public static void Update()
+    {
+      if (World != null)
+        World.Update();
+    }
+
+    public static void Draw()
+    {
+      if (World != null)
+        World.Draw(Context);
+    }
+    
     #region Input Events
 
     static void KeyPressed(object sender, KeyEventArgs e)
@@ -127,23 +150,5 @@ namespace GameEngine
     }
 
     #endregion
-
-    static void OnClose(object sender, EventArgs e)
-    {
-      RenderWindow window = (RenderWindow)sender;
-      window.Close();
-    }
-
-    public static void Update()
-    {
-      if (World != null)
-        World.Update();
-    }
-
-    public static void Draw()
-    {
-      if (World != null)
-        World.Draw(Context);
-    }
   }
 }
