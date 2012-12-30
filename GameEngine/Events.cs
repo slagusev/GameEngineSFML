@@ -3,10 +3,58 @@ using System.Collections.Generic;
 
 namespace GameEngine
 {
+  public enum Event
+  {
+    KeyPressed,
+    KeyReleased,
+    MouseMoved,
+    MouseButtonPressed,
+    MouseButtonReleased,
+    MouseWheelMoved,
+    LeftMouseDown,
+    RightMouseDown,
+    MiddleMouseDown,
+    LeftMouseClick,
+    RightMouseClick,
+    MiddleMouseClick,
+    ScrollDown,
+    ScrollUp,
+    KeyClick,
+    KeyDown,
+    KeyUp,
+    JoystickButtonPressed,
+    JoystickButtonReleased,
+    JoystickConnected,
+    JoystickDisconnected,
+    JoystickMoved,
+    JoystickBtnDown,
+    JoystickBtnUp,
+    JoystickBtnClick,
+    JoystickMoveLeft,
+    JoystickMoveRight,
+    JoystickMoveUp,
+    JoystickMoveDown,
+    NextWorld,
+    Left,
+    Right,
+    Up,
+    Down,
+    NoDirectionalDown
+  }
+
+  /// <summary>
+  /// Event Management
+  /// 
+  /// Registers, Deregisters and Notifies events
+  /// </summary>
   public class EventManager
   {
     public delegate void MyDelegate<T>(T i);
+    static Dictionary<Event, DelegateList<object>> events = new Dictionary<Event, DelegateList<object>>();
 
+    /// <summary>
+    /// Custom class to store delegates in a list
+    /// </summary>
     public class DelegateList<T>
     {
       public void Add(MyDelegate<T> del)
@@ -109,6 +157,5 @@ namespace GameEngine
       // TODO: Clear all events
     }
 
-    static Dictionary<Event, DelegateList<object>> events = new Dictionary<Event, DelegateList<object>>();
   }
 }

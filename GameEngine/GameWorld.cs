@@ -15,8 +15,15 @@ namespace GameEngine
 
     public GameWorld()
     {
+      // Load Images
+      DAO.LoadImages();
+      DAO.LoadSound();
+      DAO.LoadMusic();
+
       // Default World to load
       World = new Splash.World();
+
+      DAO.GetSound(SoundElement.Tone1).Play();
     }
 
     public void Update()

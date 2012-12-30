@@ -33,13 +33,13 @@ namespace GameEngine
       bool middle = mouse.Button.Equals(Mouse.Button.Middle);
 
       if (LastLeftState)
-        Game.EventMgr.Notify(Event.LeftDown, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.LeftMouseDown, mouseButtonEventArgs);
 
       if (LastRightState)
-        Game.EventMgr.Notify(Event.RightDown, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.RightMouseDown, mouseButtonEventArgs);
 
       if (LastMiddleState)
-        Game.EventMgr.Notify(Event.MiddleDown, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.MiddleMouseDown, mouseButtonEventArgs);
 
       LastLeftState = left;
       LastMiddleState = middle;
@@ -58,13 +58,13 @@ namespace GameEngine
       bool middle = mouse.Button.Equals(Mouse.Button.Middle);
 
       if (LastLeftState && !left)
-        Game.EventMgr.Notify(Event.LeftClick, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.LeftMouseClick, mouseButtonEventArgs);
 
       if (LastRightState && !right)
-        Game.EventMgr.Notify(Event.RightClick, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.RightMouseClick, mouseButtonEventArgs);
 
       if (LastMiddleState && !middle)
-        Game.EventMgr.Notify(Event.MiddleMiddle, mouseButtonEventArgs);
+        Game.EventMgr.Notify(Event.MiddleMouseClick, mouseButtonEventArgs);
 
       LastLeftState = left;
       LastRightState = right;

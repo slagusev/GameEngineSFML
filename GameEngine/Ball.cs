@@ -8,7 +8,7 @@ namespace GameEngine
   class Ball
   {
     Vector2f Position;
-    Vector2f Velocity;
+    public Vector2f Velocity;
     int Radius;
     Color Colour;
     CircleShape Circle;
